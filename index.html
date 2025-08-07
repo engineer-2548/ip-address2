@@ -244,6 +244,26 @@
             color: white;
             animation: pulse 2s infinite;
         }
+        
+        /* Tab styles */
+        .tab-btn {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .tab-btn.active-tab {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+        }
+        
+        .tab-btn:not(.active-tab):hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Progress bar animation */
+        @keyframes progressBar {
+            from { width: 0%; }
+        }
     </style>
 </head>
 <body class="gradient-bg">
@@ -283,23 +303,35 @@
             <!-- Tab Navigation -->
             <div class="flex justify-center mb-8">
                 <div class="glass-card rounded-full p-1 inline-flex">
-                    <button id="tabSubnet" class="tab-btn px-6 py-2 rounded-full text-white font-semibold transition-all bg-white/20">
-                        IP → Subnet
+                    <button id="subnetTab" class="tab-btn px-6 py-3 rounded-full text-white font-semibold transition-all active-tab">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            Subnet Calculator
+                        </span>
                     </button>
-                    <button id="tabHost" class="tab-btn px-6 py-2 rounded-full text-white/60 font-semibold transition-all hover:text-white">
-                        Hosts → Subnet
+                    <button id="hostTab" class="tab-btn px-6 py-3 rounded-full text-white/70 font-semibold transition-all hover:text-white">
+                        <span class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            Host Calculator
+                        </span>
                     </button>
                 </div>
             </div>
 
-            <!-- Input Section for IP to Subnet -->
-            <div id="ipToSubnetSection" class="glass-card rounded-2xl p-8 mb-8 slide-in-up" style="animation-delay: 0.1s;">
+            <!-- Subnet Calculator Section -->
+            <div id="subnetSection">
+                <!-- Input Section -->
+                <div class="glass-card rounded-2xl p-8 mb-8 slide-in-up" style="animation-delay: 0.1s;">
                 <div class="flex items-center mb-6">
                     <h2 class="text-2xl font-bold text-white flex items-center">
                         <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
                         </svg>
-                        คำนวณจาก IP และ Prefix
+                        ข้อมูล Input
                     </h2>
                     <span class="ml-auto text-white/60 text-sm">กด Enter เพื่อคำนวณ</span>
                 </div>
@@ -361,137 +393,6 @@
                             ล้างข้อมูล
                         </span>
                     </button>
-                </div>
-            </div>
-
-            <!-- Input Section for Host to Subnet -->
-            <div id="hostToSubnetSection" class="glass-card rounded-2xl p-8 mb-8 slide-in-up hidden">
-                <div class="flex items-center mb-6">
-                    <h2 class="text-2xl font-bold text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                        </svg>
-                        คำนวณจากจำนวน Hosts ที่ต้องการ
-                    </h2>
-                    <span class="ml-auto text-white/60 text-sm">ใส่จำนวน hosts แล้วดู subnet ที่เหมาะสม</span>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                        <label for="requiredHosts" class="block text-sm font-medium text-white/80 mb-2">
-                            จำนวน Hosts ที่ต้องการ
-                            <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ใส่จำนวน hosts ที่ต้องการใช้งานในเครือข่าย">ⓘ</span>
-                        </label>
-                        <input type="number" 
-                               id="requiredHosts" 
-                               placeholder="เช่น 100" 
-                               min="1"
-                               max="4294967294"
-                               class="modern-input w-full px-4 py-3 rounded-xl text-lg font-mono">
-                        <div class="mt-2 text-xs text-white/50">สูงสุด: 4,294,967,294 hosts</div>
-                    </div>
-                    
-                    <div>
-                        <label for="baseNetwork" class="block text-sm font-medium text-white/80 mb-2">
-                            Base Network (Optional)
-                            <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ใส่ network ที่ต้องการใช้ หรือปล่อยว่างเพื่อใช้ค่าเริ่มต้น">ⓘ</span>
-                        </label>
-                        <input type="text" 
-                               id="baseNetwork" 
-                               placeholder="เช่น 192.168.1.0 (หรือปล่อยว่าง)" 
-                               class="modern-input w-full px-4 py-3 rounded-xl text-lg font-mono">
-                    </div>
-                </div>
-                
-                <button id="calculateHostsBtn" class="mt-8 animated-btn w-full text-white font-bold py-4 px-6 rounded-xl text-lg shadow-xl">
-                    <span class="flex items-center justify-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                        </svg>
-                        คำนวณ Subnet ที่เหมาะสม
-                    </span>
-                </button>
-            </div>
-
-            <!-- Host Calculator Result -->
-            <div id="hostResultCard" class="hidden">
-                <div class="glass-card rounded-2xl p-8 mb-6 slide-in-up">
-                    <div class="flex items-center mb-6">
-                        <h2 class="text-2xl font-bold text-white flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path class="checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            Subnet ที่แนะนำ
-                        </h2>
-                    </div>
-                    
-                    <div class="bg-gradient-to-r from-purple-500/20 to-pink-500/20 rounded-xl p-6 mb-6">
-                        <div class="text-center">
-                            <div class="text-white/60 text-sm mb-2">สำหรับ <span id="requestedHosts" class="text-white font-bold">-</span> hosts ที่ต้องการ</div>
-                            <div class="text-4xl font-bold text-white mb-2">
-                                ใช้ <span class="bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 to-pink-500">/<span id="recommendedPrefix">-</span></span>
-                            </div>
-                            <div class="text-xl text-white/80">
-                                Subnet Mask: <span id="recommendedMask" class="font-mono font-bold">-</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">จำนวน Hosts ที่ใช้ได้จริง</h3>
-                            <p id="actualHosts" class="text-2xl font-mono font-bold text-green-400">-</p>
-                            <p id="hostsDifference" class="text-sm text-white/50 mt-1">-</p>
-                        </div>
-                        
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">จำนวน IP ทั้งหมด</h3>
-                            <p id="totalIPs" class="text-2xl font-mono font-bold text-white">-</p>
-                            <p class="text-sm text-white/50 mt-1">รวม Network และ Broadcast</p>
-                        </div>
-                        
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">Network Address</h3>
-                            <p id="hostNetworkAddress" class="text-xl font-mono font-bold text-white">-</p>
-                        </div>
-                        
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">Broadcast Address</h3>
-                            <p id="hostBroadcastAddress" class="text-xl font-mono font-bold text-white">-</p>
-                        </div>
-                        
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">First Usable IP</h3>
-                            <p id="hostFirstIP" class="text-xl font-mono font-bold text-white">-</p>
-                        </div>
-                        
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h3 class="text-sm text-white/60 mb-1">Last Usable IP</h3>
-                            <p id="hostLastIP" class="text-xl font-mono font-bold text-white">-</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Efficiency Meter -->
-                    <div class="mt-6">
-                        <h3 class="text-sm text-white/60 mb-2">ประสิทธิภาพการใช้ IP Address</h3>
-                        <div class="w-full bg-white/10 rounded-full h-4 overflow-hidden">
-                            <div id="efficiencyBar" class="h-full bg-gradient-to-r from-green-400 to-blue-500 transition-all duration-500" style="width: 0%"></div>
-                        </div>
-                        <div class="flex justify-between mt-1">
-                            <span class="text-xs text-white/50">0%</span>
-                            <span id="efficiencyPercent" class="text-xs text-white font-bold">0%</span>
-                            <span class="text-xs text-white/50">100%</span>
-                        </div>
-                    </div>
-                    
-                    <div id="hostNote" class="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
-                        <p class="text-blue-200 text-sm flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span id="hostNoteText">Subnet นี้เหมาะสมที่สุดสำหรับจำนวน hosts ที่คุณต้องการ</span>
-                        </p>
-                    </div>
                 </div>
             </div>
 
@@ -655,6 +556,141 @@
                     <div>
                         <h3 class="text-lg font-semibold text-white mb-1">เกิดข้อผิดพลาด</h3>
                         <p id="errorMessage" class="text-white/80"></p>
+                    </div>
+                </div>
+            </div>
+
+            </div>
+            <!-- End Subnet Section -->
+
+            <!-- Host Calculator Section -->
+            <div id="hostSection" class="hidden">
+                <!-- Host Input Card -->
+                <div class="glass-card rounded-2xl p-8 mb-8 slide-in-up">
+                    <div class="flex items-center mb-6">
+                        <h2 class="text-2xl font-bold text-white flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                            </svg>
+                            คำนวณ Subnet จากจำนวน Host
+                        </h2>
+                        <span class="ml-auto text-white/60 text-sm">ใส่จำนวน Host ที่ต้องการ</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="requiredHosts" class="block text-sm font-medium text-white/80 mb-2">
+                                จำนวน Hosts ที่ต้องการ
+                                <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ใส่จำนวน hosts ที่ต้องการใช้งานในเครือข่าย">ⓘ</span>
+                            </label>
+                            <input type="number" 
+                                   id="requiredHosts" 
+                                   min="1"
+                                   placeholder="เช่น 100" 
+                                   value="100"
+                                   class="modern-input w-full px-4 py-3 rounded-xl text-lg">
+                        </div>
+                        
+                        <div>
+                            <label for="baseNetwork" class="block text-sm font-medium text-white/80 mb-2">
+                                Base Network (Optional)
+                                <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="IP เริ่มต้นสำหรับเครือข่าย (ไม่บังคับ)">ⓘ</span>
+                            </label>
+                            <input type="text" 
+                                   id="baseNetwork" 
+                                   placeholder="เช่น 192.168.1.0" 
+                                   value="192.168.1.0"
+                                   class="modern-input w-full px-4 py-3 rounded-xl text-lg font-mono">
+                        </div>
+                    </div>
+                    
+                    <button id="calculateHostBtn" class="mt-6 animated-btn w-full text-white font-bold py-4 px-6 rounded-xl text-lg shadow-xl">
+                        <span class="flex items-center justify-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
+                            </svg>
+                            คำนวณ Subnet ที่เหมาะสม
+                        </span>
+                    </button>
+                </div>
+
+                <!-- Host Result Card -->
+                <div id="hostResultCard" class="hidden">
+                    <div class="glass-card rounded-2xl p-8 mb-6 slide-in-up">
+                        <div class="flex items-center mb-6">
+                            <h2 class="text-2xl font-bold text-white flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                Subnet ที่แนะนำ
+                            </h2>
+                        </div>
+                        
+                        <!-- Recommendation Box -->
+                        <div class="bg-gradient-to-r from-green-500/20 to-blue-500/20 border border-green-500/30 rounded-xl p-6 mb-6">
+                            <div class="text-center">
+                                <p class="text-white/80 mb-2">สำหรับ <span id="requestedHosts" class="font-bold text-xl">-</span> hosts</p>
+                                <p class="text-3xl font-bold text-white mb-2">
+                                    ใช้ <span class="text-green-400">/<span id="recommendedPrefix">-</span></span>
+                                </p>
+                                <p class="text-white/60">Subnet Mask: <span id="recommendedMask" class="font-mono">-</span></p>
+                            </div>
+                        </div>
+                        
+                        <!-- Detailed Info -->
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-2">ข้อมูล Subnet</h4>
+                                <p class="text-white">Network: <span id="hostNetwork" class="font-mono">-</span></p>
+                                <p class="text-white mt-1">Broadcast: <span id="hostBroadcast" class="font-mono">-</span></p>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-2">จำนวน Hosts</h4>
+                                <p class="text-white">ใช้งานได้: <span id="usableHosts" class="font-bold">-</span> hosts</p>
+                                <p class="text-white mt-1">เหลือ: <span id="wastedHosts" class="text-yellow-400">-</span> hosts</p>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-2">IP Range</h4>
+                                <p class="text-white">First: <span id="hostFirstIp" class="font-mono">-</span></p>
+                                <p class="text-white mt-1">Last: <span id="hostLastIp" class="font-mono">-</span></p>
+                            </div>
+                            
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-2">ประสิทธิภาพ</h4>
+                                <p class="text-white">ใช้งาน: <span id="efficiency" class="font-bold">-</span>%</p>
+                                <div class="w-full bg-white/20 rounded-full h-2 mt-2">
+                                    <div id="efficiencyBar" class="bg-gradient-to-r from-green-400 to-blue-400 h-2 rounded-full transition-all duration-500" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Alternative Subnets -->
+                        <div class="mt-6 p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl">
+                            <h4 class="text-sm text-white/80 mb-3 flex items-center">
+                                <svg class="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                ตัวเลือก Subnet ใกล้เคียง
+                            </h4>
+                            <div id="alternativeSubnets" class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                                <!-- Alternative subnets will be added here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Host Error -->
+                <div id="hostErrorCard" class="glass-card rounded-2xl p-6 hidden">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">เกิดข้อผิดพลาด</h3>
+                            <p id="hostErrorMessage" class="text-white/80"></p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -992,6 +1028,174 @@ Hosts: ${document.getElementById('hostCount').textContent}`;
                 document.body.classList.add('dark');
                 document.getElementById('sunIcon').classList.add('hidden');
                 document.getElementById('moonIcon').classList.remove('hidden');
+            }
+        }
+        
+        // Calculate subnet from required hosts
+        function calculateFromHosts() {
+            const requiredHosts = parseInt(document.getElementById('requiredHosts').value);
+            const baseNetwork = document.getElementById('baseNetwork').value || '192.168.1.0';
+            
+            const hostResultCard = document.getElementById('hostResultCard');
+            const hostErrorCard = document.getElementById('hostErrorCard');
+            const hostErrorMessage = document.getElementById('hostErrorMessage');
+            
+            // Validate input
+            if (isNaN(requiredHosts) || requiredHosts < 1) {
+                hostErrorMessage.textContent = 'กรุณาใส่จำนวน hosts ที่ถูกต้อง (มากกว่า 0)';
+                hostErrorCard.classList.remove('hidden');
+                hostResultCard.classList.add('hidden');
+                return;
+            }
+            
+            if (requiredHosts > 16777214) { // Max hosts for /8
+                hostErrorMessage.textContent = 'จำนวน hosts มากเกินไป (สูงสุด 16,777,214 hosts สำหรับ /8)';
+                hostErrorCard.classList.remove('hidden');
+                hostResultCard.classList.add('hidden');
+                return;
+            }
+            
+            // Validate base network if provided
+            if (baseNetwork && !validateIp(baseNetwork)) {
+                hostErrorMessage.textContent = 'รูปแบบ Base Network IP ไม่ถูกต้อง';
+                hostErrorCard.classList.remove('hidden');
+                hostResultCard.classList.add('hidden');
+                return;
+            }
+            
+            hostErrorCard.classList.add('hidden');
+            
+            // Calculate required prefix
+            // Need to add 2 for network and broadcast addresses
+            const totalAddresses = requiredHosts + 2;
+            let hostBits = Math.ceil(Math.log2(totalAddresses));
+            let prefix = 32 - hostBits;
+            
+            // Special cases
+            if (requiredHosts === 1) {
+                prefix = 31; // Point-to-point link
+            } else if (requiredHosts === 2) {
+                prefix = 30; // Small subnet with 2 usable hosts
+            }
+            
+            // Ensure prefix is valid
+            if (prefix < 8) prefix = 8;
+            if (prefix > 30 && requiredHosts > 2) prefix = 30;
+            
+            // Calculate actual subnet details
+            const maskInt = (0xFFFFFFFF << (32 - prefix)) >>> 0;
+            const subnetMask = intToIp(maskInt);
+            const actualHosts = prefix >= 31 ? (prefix === 31 ? 2 : 1) : Math.pow(2, 32 - prefix) - 2;
+            const wastedHosts = actualHosts - requiredHosts;
+            const efficiency = Math.round((requiredHosts / actualHosts) * 100);
+            
+            // Calculate network details
+            const ipInt = ipToInt(baseNetwork);
+            const networkInt = (ipInt & maskInt) >>> 0;
+            const networkAddress = intToIp(networkInt);
+            const broadcastInt = (networkInt | (~maskInt)) >>> 0;
+            const broadcastAddress = intToIp(broadcastInt);
+            
+            let firstIp, lastIp;
+            if (prefix < 31) {
+                firstIp = intToIp(networkInt + 1);
+                lastIp = intToIp(broadcastInt - 1);
+            } else if (prefix === 31) {
+                firstIp = networkAddress;
+                lastIp = broadcastAddress;
+            } else {
+                firstIp = networkAddress;
+                lastIp = networkAddress;
+            }
+            
+            // Display results
+            document.getElementById('requestedHosts').textContent = requiredHosts.toLocaleString();
+            document.getElementById('recommendedPrefix').textContent = prefix;
+            document.getElementById('recommendedMask').textContent = subnetMask;
+            document.getElementById('hostNetwork').textContent = networkAddress;
+            document.getElementById('hostBroadcast').textContent = prefix < 31 ? broadcastAddress : '-';
+            document.getElementById('usableHosts').textContent = actualHosts.toLocaleString();
+            document.getElementById('wastedHosts').textContent = wastedHosts.toLocaleString();
+            document.getElementById('hostFirstIp').textContent = firstIp;
+            document.getElementById('hostLastIp').textContent = lastIp;
+            document.getElementById('efficiency').textContent = efficiency;
+            
+            // Update efficiency bar
+            const efficiencyBar = document.getElementById('efficiencyBar');
+            efficiencyBar.style.width = '0%';
+            setTimeout(() => {
+                efficiencyBar.style.width = efficiency + '%';
+            }, 100);
+            
+            // Generate alternative subnet suggestions
+            const alternatives = [];
+            if (prefix > 8) {
+                const altPrefix1 = prefix - 1;
+                const altHosts1 = Math.pow(2, 32 - altPrefix1) - 2;
+                alternatives.push({
+                    prefix: altPrefix1,
+                    hosts: altHosts1,
+                    mask: intToIp((0xFFFFFFFF << (32 - altPrefix1)) >>> 0),
+                    type: 'larger'
+                });
+            }
+            if (prefix < 30 && actualHosts > requiredHosts + 10) {
+                const altPrefix2 = prefix + 1;
+                const altHosts2 = Math.pow(2, 32 - altPrefix2) - 2;
+                if (altHosts2 >= requiredHosts) {
+                    alternatives.push({
+                        prefix: altPrefix2,
+                        hosts: altHosts2,
+                        mask: intToIp((0xFFFFFFFF << (32 - altPrefix2)) >>> 0),
+                        type: 'smaller'
+                    });
+                }
+            }
+            
+            const alternativesHtml = alternatives.map(alt => `
+                <div class="bg-white/5 rounded-lg p-3 text-center">
+                    <p class="text-white font-bold">/${alt.prefix}</p>
+                    <p class="text-white/60 text-xs">${alt.hosts.toLocaleString()} hosts</p>
+                    <p class="text-white/40 text-xs font-mono">${alt.mask}</p>
+                    <p class="text-xs mt-1 ${alt.type === 'larger' ? 'text-yellow-400' : 'text-green-400'}">
+                        ${alt.type === 'larger' ? 'ใหญ่กว่า' : 'เล็กกว่า'}
+                    </p>
+                </div>
+            `).join('');
+            
+            document.getElementById('alternativeSubnets').innerHTML = alternativesHtml || 
+                '<p class="text-white/60 text-center col-span-3">ไม่มีตัวเลือกอื่นที่เหมาะสม</p>';
+            
+            hostResultCard.classList.remove('hidden');
+            
+            // Animate result card
+            hostResultCard.querySelector('.glass-card').style.animation = 'none';
+            setTimeout(() => {
+                hostResultCard.querySelector('.glass-card').style.animation = 'slideInUp 0.5s ease-out';
+            }, 10);
+        }
+        
+        // Tab switching
+        function switchTab(tabName) {
+            const subnetTab = document.getElementById('subnetTab');
+            const hostTab = document.getElementById('hostTab');
+            const subnetSection = document.getElementById('subnetSection');
+            const hostSection = document.getElementById('hostSection');
+            
+            if (tabName === 'subnet') {
+                subnetTab.classList.add('active-tab');
+                subnetTab.classList.remove('text-white/70');
+                hostTab.classList.remove('active-tab');
+                hostTab.classList.add('text-white/70');
+                subnetSection.classList.remove('hidden');
+                hostSection.classList.add('hidden');
+            } else {
+                hostTab.classList.add('active-tab');
+                hostTab.classList.remove('text-white/70');
+                subnetTab.classList.remove('active-tab');
+                subnetTab.classList.add('text-white/70');
+                hostSection.classList.remove('hidden');
+                subnetSection.classList.add('hidden');
             }
         }
         
