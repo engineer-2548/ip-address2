@@ -326,240 +326,239 @@
             <div id="subnetSection">
                 <!-- Input Section -->
                 <div class="glass-card rounded-2xl p-8 mb-8 slide-in-up" style="animation-delay: 0.1s;">
-                <div class="flex items-center mb-6">
-                    <h2 class="text-2xl font-bold text-white flex items-center">
-                        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
-                        </svg>
-                        ข้อมูล Input
-                    </h2>
-                    <span class="ml-auto text-white/60 text-sm">กด Enter เพื่อคำนวณ</span>
-                </div>
-                
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div class="md:col-span-2">
-                        <label for="ipAddress" class="block text-sm font-medium text-white/80 mb-2">
-                            IP Address
-                            <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ใส่ IP Address ในรูปแบบ xxx.xxx.xxx.xxx">ⓘ</span>
-                        </label>
-                        <div class="relative">
-                            <input type="text" 
-                                   id="ipAddress" 
-                                   placeholder="เช่น 192.168.1.0" 
-                                   value="192.168.1.0"
-                                   class="modern-input w-full px-4 py-3 rounded-xl text-lg font-mono"
-                                   maxlength="15">
-                            <div id="ipValidation" class="absolute right-3 top-1/2 transform -translate-y-1/2 opacity-0 transition-opacity">
-                                <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
+                    <div class="flex items-center mb-6">
+                        <h2 class="text-2xl font-bold text-white flex items-center">
+                            <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"></path>
+                            </svg>
+                            ข้อมูล Input
+                        </h2>
+                        <span class="ml-auto text-white/60 text-sm">กด Enter เพื่อคำนวณ</span>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="md:col-span-2">
+                            <label for="ipAddress" class="block text-sm font-medium text-white/80 mb-2">
+                                IP Address
+                                <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ใส่ IP Address ในรูปแบบ xxx.xxx.xxx.xxx">ⓘ</span>
+                            </label>
+                            <div class="relative">
+                                <input type="text" 
+                                       id="ipAddress" 
+                                       placeholder="เช่น 192.168.1.0" 
+                                       value="192.168.1.0"
+                                       class="modern-input w-full px-4 py-3 rounded-xl text-lg font-mono"
+                                       maxlength="15">
+                                <div id="ipValidation" class="absolute right-3 top-1/2 transform -translate-y-1/2 opacity-0 transition-opacity">
+                                    <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label for="prefix" class="block text-sm font-medium text-white/80 mb-2">
+                                Prefix (CIDR)
+                                <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ค่า Subnet Mask ในรูปแบบ CIDR (0-32)">ⓘ</span>
+                            </label>
+                            <div class="relative">
+                                <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg font-bold">/</span>
+                                <input type="number" 
+                                       id="prefix" 
+                                       min="0" 
+                                       max="32" 
+                                       placeholder="24" 
+                                       value="24"
+                                       class="modern-input w-full pl-8 pr-4 py-3 rounded-xl text-lg font-mono">
+                                <div class="absolute right-3 top-1 text-xs text-gray-400">0-32</div>
                             </div>
                         </div>
                     </div>
                     
-                    <div>
-                        <label for="prefix" class="block text-sm font-medium text-white/80 mb-2">
-                            Prefix (CIDR)
-                            <span class="tooltip ml-1 text-white/50 cursor-help" data-tooltip="ค่า Subnet Mask ในรูปแบบ CIDR (0-32)">ⓘ</span>
-                        </label>
-                        <div class="relative">
-                            <span class="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 text-lg font-bold">/</span>
-                            <input type="number" 
-                                   id="prefix" 
-                                   min="0" 
-                                   max="32" 
-                                   placeholder="24" 
-                                   value="24"
-                                   class="modern-input w-full pl-8 pr-4 py-3 rounded-xl text-lg font-mono">
-                            <div class="absolute right-3 top-1 text-xs text-gray-400">0-32</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="mt-8 flex flex-col sm:flex-row gap-4">
-                    <button id="calculateBtn" class="animated-btn flex-1 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-xl">
-                        <span class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
-                            </svg>
-                            คำนวณผลลัพธ์
-                        </span>
-                    </button>
-                    <button id="clearBtn" class="glass-card text-white font-semibold py-4 px-6 rounded-xl hover:bg-white/10 transition-colors">
-                        <span class="flex items-center justify-center">
-                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                            </svg>
-                            ล้างข้อมูล
-                        </span>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Result Section -->
-            <div id="resultCard" class="hidden">
-                <!-- Main Results -->
-                <div class="glass-card rounded-2xl p-8 mb-6 slide-in-up">
-                    <div class="flex items-center mb-6">
-                        <h2 class="text-2xl font-bold text-white flex items-center">
-                            <svg class="w-6 h-6 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path class="checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            ผลการคำนวณ
-                        </h2>
-                        <button id="copyAllBtn" class="ml-auto glass-card px-4 py-2 rounded-lg text-white text-sm hover:bg-white/10 transition-colors">
-                            <span class="flex items-center">
-                                <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                    <div class="mt-8 flex flex-col sm:flex-row gap-4">
+                        <button id="calculateBtn" class="animated-btn flex-1 text-white font-bold py-4 px-6 rounded-xl text-lg shadow-xl">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path>
                                 </svg>
-                                Copy All
+                                คำนวณผลลัพธ์
+                            </span>
+                        </button>
+                        <button id="clearBtn" class="glass-card text-white font-semibold py-4 px-6 rounded-xl hover:bg-white/10 transition-colors">
+                            <span class="flex items-center justify-center">
+                                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                </svg>
+                                ล้างข้อมูล
                             </span>
                         </button>
                     </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Network Address</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('networkAddress')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                </div>
+
+                <!-- Result Section -->
+                <div id="resultCard" class="hidden">
+                    <!-- Main Results -->
+                    <div class="glass-card rounded-2xl p-8 mb-6 slide-in-up">
+                        <div class="flex items-center mb-6">
+                            <h2 class="text-2xl font-bold text-white flex items-center">
+                                <svg class="w-6 h-6 mr-2 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path class="checkmark" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                ผลการคำนวณ
+                            </h2>
+                            <button id="copyAllBtn" class="ml-auto glass-card px-4 py-2 rounded-lg text-white text-sm hover:bg-white/10 transition-colors">
+                                <span class="flex items-center">
+                                    <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
                                     </svg>
-                                </button>
-                            </div>
-                            <p id="networkAddress" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                                    Copy All
+                                </span>
+                            </button>
                         </div>
                         
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Broadcast Address</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('broadcastAddress')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                </button>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Network Address</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('networkAddress')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="networkAddress" class="text-2xl font-mono font-bold text-white mt-1">-</p>
                             </div>
-                            <p id="broadcastAddress" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Broadcast Address</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('broadcastAddress')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="broadcastAddress" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            </div>
+                            
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">First Usable IP</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('firstIp')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="firstIp" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            </div>
+                            
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Last Usable IP</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('lastIp')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="lastIp" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            </div>
+                            
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Subnet Mask</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('subnetMask')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="subnetMask" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            </div>
+                            
+                            <div class="result-item group">
+                                <div class="flex items-center justify-between">
+                                    <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Usable Hosts</h3>
+                                    <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('hostCount')">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                                <p id="hostCount" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                            </div>
                         </div>
                         
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">First Usable IP</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('firstIp')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <p id="firstIp" class="text-2xl font-mono font-bold text-white mt-1">-</p>
-                        </div>
-                        
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Last Usable IP</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('lastIp')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <p id="lastIp" class="text-2xl font-mono font-bold text-white mt-1">-</p>
-                        </div>
-                        
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Subnet Mask</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('subnetMask')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <p id="subnetMask" class="text-2xl font-mono font-bold text-white mt-1">-</p>
-                        </div>
-                        
-                        <div class="result-item group">
-                            <div class="flex items-center justify-between">
-                                <h3 class="text-sm font-medium text-white/60 uppercase tracking-wider">Usable Hosts</h3>
-                                <button class="copy-btn text-white/40 hover:text-white" onclick="copyToClipboard('hostCount')">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-                                    </svg>
-                                </button>
-                            </div>
-                            <p id="hostCount" class="text-2xl font-mono font-bold text-white mt-1">-</p>
+                        <div id="note" class="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl hidden">
+                            <p class="text-yellow-200 text-sm flex items-start">
+                                <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                                <span id="noteText"></span>
+                            </p>
                         </div>
                     </div>
-                    
-                    <div id="note" class="mt-6 p-4 bg-yellow-500/10 border border-yellow-500/30 rounded-xl hidden">
-                        <p class="text-yellow-200 text-sm flex items-start">
-                            <svg class="w-5 h-5 mr-2 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+
+                    <!-- Additional Info -->
+                    <div class="glass-card rounded-2xl p-8 slide-in-up" style="animation-delay: 0.2s;">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                             </svg>
-                            <span id="noteText"></span>
-                        </p>
+                            ข้อมูลเพิ่มเติม
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-1">Wildcard Mask</h4>
+                                <p id="wildcardMask" class="font-mono text-white">-</p>
+                            </div>
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-1">IP Class</h4>
+                                <p id="ipClass" class="font-mono text-white">-</p>
+                            </div>
+                            <div class="bg-white/5 rounded-lg p-4">
+                                <h4 class="text-sm text-white/60 mb-1">IP Type</h4>
+                                <p id="ipType" class="font-mono text-white">-</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Binary Representation -->
+                        <div class="mt-6">
+                            <h4 class="text-sm text-white/60 mb-3 uppercase tracking-wider">Binary Representation</h4>
+                            <div class="bg-black/30 rounded-lg p-4 overflow-x-auto">
+                                <table class="w-full text-sm">
+                                    <tr>
+                                        <td class="text-white/60 pr-4 whitespace-nowrap">IP Address:</td>
+                                        <td id="ipBinary" class="font-mono text-green-400">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-white/60 pr-4 whitespace-nowrap">Subnet Mask:</td>
+                                        <td id="maskBinary" class="font-mono text-blue-400">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="text-white/60 pr-4 whitespace-nowrap">Network:</td>
+                                        <td id="networkBinary" class="font-mono text-yellow-400">-</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Additional Info -->
-                <div class="glass-card rounded-2xl p-8 slide-in-up" style="animation-delay: 0.2s;">
-                    <h3 class="text-xl font-bold text-white mb-4 flex items-center">
-                        <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                <!-- Error Message -->
+                <div id="errorCard" class="glass-card rounded-2xl p-6 hidden">
+                    <div class="flex items-start">
+                        <svg class="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        ข้อมูลเพิ่มเติม
-                    </h3>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h4 class="text-sm text-white/60 mb-1">Wildcard Mask</h4>
-                            <p id="wildcardMask" class="font-mono text-white">-</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h4 class="text-sm text-white/60 mb-1">IP Class</h4>
-                            <p id="ipClass" class="font-mono text-white">-</p>
-                        </div>
-                        <div class="bg-white/5 rounded-lg p-4">
-                            <h4 class="text-sm text-white/60 mb-1">IP Type</h4>
-                            <p id="ipType" class="font-mono text-white">-</p>
-                        </div>
-                    </div>
-                    
-                    <!-- Binary Representation -->
-                    <div class="mt-6">
-                        <h4 class="text-sm text-white/60 mb-3 uppercase tracking-wider">Binary Representation</h4>
-                        <div class="bg-black/30 rounded-lg p-4 overflow-x-auto">
-                            <table class="w-full text-sm">
-                                <tr>
-                                    <td class="text-white/60 pr-4 whitespace-nowrap">IP Address:</td>
-                                    <td id="ipBinary" class="font-mono text-green-400">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-white/60 pr-4 whitespace-nowrap">Subnet Mask:</td>
-                                    <td id="maskBinary" class="font-mono text-blue-400">-</td>
-                                </tr>
-                                <tr>
-                                    <td class="text-white/60 pr-4 whitespace-nowrap">Network:</td>
-                                    <td id="networkBinary" class="font-mono text-yellow-400">-</td>
-                                </tr>
-                            </table>
+                        <div>
+                            <h3 class="text-lg font-semibold text-white mb-1">เกิดข้อผิดพลาด</h3>
+                            <p id="errorMessage" class="text-white/80"></p>
                         </div>
                     </div>
                 </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorCard" class="glass-card rounded-2xl p-6 hidden">
-                <div class="flex items-start">
-                    <svg class="w-6 h-6 text-red-400 mr-3 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                    <div>
-                        <h3 class="text-lg font-semibold text-white mb-1">เกิดข้อผิดพลาด</h3>
-                        <p id="errorMessage" class="text-white/80"></p>
-                    </div>
-                </div>
-            </div>
-
             </div>
             <!-- End Subnet Section -->
 
@@ -910,127 +909,6 @@
             });
         }
         
-        // Add to history
-        function addToHistory(ip, prefix, network, mask) {
-            const historyItem = {
-                ip: ip,
-                prefix: prefix,
-                network: network,
-                mask: mask,
-                timestamp: new Date().toLocaleTimeString()
-            };
-            
-            history.unshift(historyItem);
-            if (history.length > 5) history.pop();
-            
-            displayHistory();
-        }
-        
-        // Display history
-        function displayHistory() {
-            const historySection = document.getElementById('historySection');
-            const historyList = document.getElementById('historyList');
-            
-            if (history.length === 0) {
-                historySection.classList.add('hidden');
-                return;
-            }
-            
-            historySection.classList.remove('hidden');
-            historyList.innerHTML = history.map((item, index) => `
-                <div class="glass-card p-3 rounded-lg cursor-pointer hover:bg-white/10 transition-colors" 
-                     onclick="loadFromHistory('${item.ip}', ${item.prefix})">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="font-mono text-white">${item.ip}/${item.prefix}</span>
-                            <span class="text-white/60 text-sm ml-2">→ ${item.network}</span>
-                        </div>
-                        <span class="text-white/40 text-xs">${item.timestamp}</span>
-                    </div>
-                </div>
-            `).join('');
-        }
-        
-        // Load from history
-        function loadFromHistory(ip, prefix) {
-            document.getElementById('ipAddress').value = ip;
-            document.getElementById('prefix').value = prefix;
-            calculateSubnet();
-        }
-        
-        // Clear history
-        function clearHistory() {
-            history = [];
-            displayHistory();
-            showToast('ล้างประวัติแล้ว');
-        }
-        
-        // Copy to clipboard
-        function copyToClipboard(elementId) {
-            const text = document.getElementById(elementId).textContent;
-            if (text && text !== '-') {
-                navigator.clipboard.writeText(text);
-                showToast('คัดลอกแล้ว: ' + text);
-            }
-        }
-        
-        // Copy all results
-        function copyAllResults() {
-            const results = `Network: ${document.getElementById('networkAddress').textContent}
-Broadcast: ${document.getElementById('broadcastAddress').textContent}
-First IP: ${document.getElementById('firstIp').textContent}
-Last IP: ${document.getElementById('lastIp').textContent}
-Subnet Mask: ${document.getElementById('subnetMask').textContent}
-Hosts: ${document.getElementById('hostCount').textContent}`;
-            
-            navigator.clipboard.writeText(results);
-            showToast('คัดลอกผลลัพธ์ทั้งหมดแล้ว');
-        }
-        
-        // Show toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            const toastMessage = document.getElementById('toastMessage');
-            toastMessage.textContent = message;
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.add('hidden');
-            }, 2000);
-        }
-        
-        // Clear inputs
-        function clearInputs() {
-            document.getElementById('ipAddress').value = '';
-            document.getElementById('prefix').value = '';
-            document.getElementById('resultCard').classList.add('hidden');
-            document.getElementById('errorCard').classList.add('hidden');
-            document.getElementById('ipValidation').style.opacity = '0';
-        }
-        
-        // Theme toggle
-        function toggleTheme() {
-            const body = document.body;
-            const sunIcon = document.getElementById('sunIcon');
-            const moonIcon = document.getElementById('moonIcon');
-            
-            body.classList.toggle('dark');
-            sunIcon.classList.toggle('hidden');
-            moonIcon.classList.toggle('hidden');
-            
-            // Save theme preference
-            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
-        }
-        
-        // Load theme preference
-        function loadTheme() {
-            const theme = localStorage.getItem('theme') || 'light';
-            if (theme === 'dark') {
-                document.body.classList.add('dark');
-                document.getElementById('sunIcon').classList.add('hidden');
-                document.getElementById('moonIcon').classList.remove('hidden');
-            }
-        }
-        
         // Calculate subnet from required hosts
         function calculateFromHosts() {
             const requiredHosts = parseInt(document.getElementById('requiredHosts').value);
@@ -1199,11 +1077,137 @@ Hosts: ${document.getElementById('hostCount').textContent}`;
             }
         }
         
+        // Add to history
+        function addToHistory(ip, prefix, network, mask) {
+            const historyItem = {
+                ip: ip,
+                prefix: prefix,
+                network: network,
+                mask: mask,
+                timestamp: new Date().toLocaleTimeString()
+            };
+            
+            history.unshift(historyItem);
+            if (history.length > 5) history.pop();
+            
+            displayHistory();
+        }
+        
+        // Display history
+        function displayHistory() {
+            const historySection = document.getElementById('historySection');
+            const historyList = document.getElementById('historyList');
+            
+            if (history.length === 0) {
+                historySection.classList.add('hidden');
+                return;
+            }
+            
+            historySection.classList.remove('hidden');
+            historyList.innerHTML = history.map((item, index) => `
+                <div class="glass-card p-3 rounded-lg cursor-pointer hover:bg-white/10 transition-colors" 
+                     onclick="loadFromHistory('${item.ip}', ${item.prefix})">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <span class="font-mono text-white">${item.ip}/${item.prefix}</span>
+                            <span class="text-white/60 text-sm ml-2">→ ${item.network}</span>
+                        </div>
+                        <span class="text-white/40 text-xs">${item.timestamp}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Load from history
+        function loadFromHistory(ip, prefix) {
+            document.getElementById('ipAddress').value = ip;
+            document.getElementById('prefix').value = prefix;
+            calculateSubnet();
+        }
+        
+        // Clear history
+        function clearHistory() {
+            history = [];
+            displayHistory();
+            showToast('ล้างประวัติแล้ว');
+        }
+        
+        // Copy to clipboard
+        function copyToClipboard(elementId) {
+            const text = document.getElementById(elementId).textContent;
+            if (text && text !== '-') {
+                navigator.clipboard.writeText(text);
+                showToast('คัดลอกแล้ว: ' + text);
+            }
+        }
+        
+        // Copy all results
+        function copyAllResults() {
+            const results = `Network: ${document.getElementById('networkAddress').textContent}
+Broadcast: ${document.getElementById('broadcastAddress').textContent}
+First IP: ${document.getElementById('firstIp').textContent}
+Last IP: ${document.getElementById('lastIp').textContent}
+Subnet Mask: ${document.getElementById('subnetMask').textContent}
+Hosts: ${document.getElementById('hostCount').textContent}`;
+            
+            navigator.clipboard.writeText(results);
+            showToast('คัดลอกผลลัพธ์ทั้งหมดแล้ว');
+        }
+        
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMessage = document.getElementById('toastMessage');
+            toastMessage.textContent = message;
+            toast.classList.remove('hidden');
+            setTimeout(() => {
+                toast.classList.add('hidden');
+            }, 2000);
+        }
+        
+        // Clear inputs
+        function clearInputs() {
+            document.getElementById('ipAddress').value = '';
+            document.getElementById('prefix').value = '';
+            document.getElementById('resultCard').classList.add('hidden');
+            document.getElementById('errorCard').classList.add('hidden');
+            document.getElementById('ipValidation').style.opacity = '0';
+        }
+        
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const sunIcon = document.getElementById('sunIcon');
+            const moonIcon = document.getElementById('moonIcon');
+            
+            body.classList.toggle('dark');
+            sunIcon.classList.toggle('hidden');
+            moonIcon.classList.toggle('hidden');
+            
+            // Save theme preference
+            localStorage.setItem('theme', body.classList.contains('dark') ? 'dark' : 'light');
+        }
+        
+        // Load theme preference
+        function loadTheme() {
+            const theme = localStorage.getItem('theme') || 'light';
+            if (theme === 'dark') {
+                document.body.classList.add('dark');
+                document.getElementById('sunIcon').classList.add('hidden');
+                document.getElementById('moonIcon').classList.remove('hidden');
+            }
+        }
+        
         // Event listeners
         document.getElementById('calculateBtn').addEventListener('click', calculateSubnet);
         document.getElementById('clearBtn').addEventListener('click', clearInputs);
         document.getElementById('copyAllBtn').addEventListener('click', copyAllResults);
         document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+        document.getElementById('calculateHostBtn').addEventListener('click', calculateFromHosts);
+        
+        // Tab switching
+        document.getElementById('subnetTab').addEventListener('click', () => switchTab('subnet'));
+        document.getElementById('hostTab').addEventListener('click', () => switchTab('host'));
         
         // Enter key to calculate
         document.getElementById('ipAddress').addEventListener('keypress', (e) => {
@@ -1212,6 +1216,14 @@ Hosts: ${document.getElementById('hostCount').textContent}`;
         
         document.getElementById('prefix').addEventListener('keypress', (e) => {
             if (e.key === 'Enter') calculateSubnet();
+        });
+        
+        document.getElementById('requiredHosts').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculateFromHosts();
+        });
+        
+        document.getElementById('baseNetwork').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') calculateFromHosts();
         });
         
         // Real-time IP validation
